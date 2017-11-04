@@ -1,14 +1,35 @@
 <ion-header>
   <ion-navbar>
     <ion-title>
-      Ionic Blank
+      Easy Visit
     </ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
-  The world is your oyster.
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will be your guide.
-  </p>
+  <ion-item>
+    <ion-label>Search By:</ion-label>
+    <ion-select [(ngModel)]="searchBySelector" (ionChange)="showControls()">
+      <ion-option>Name</ion-option>
+      <ion-option>Specialty</ion-option>
+      <ion-option>Hospital</ion-option>
+    </ion-select>
+  </ion-item>
+  
+  <ion-item [hidden]="!showDoctorText">
+    <ion-input type="text" name="doctorText"></ion-input>
+  </ion-item>
+
+  <ion-list inset name="doctorList" [hidden]="!showDoctorText">
+    <button ion-item (click)="showDatePicker()">Steve Billings, M.D.</button>
+    <button ion-item (click)="showDatePicker()">Bob the Builder, M.D.</button>
+    <button ion-item (click)="showDatePicker()">Michela Butts, M.D.</button>
+    <button ion-item (click)="showDatePicker()">Zachary Kamm, J.D.</button>
+    <button ion-item (click)="showDatePicker()">Scott Harban, S.S.W.F.C.D.</button>
+  </ion-list>
+
+  <ion-item [hidden]="!dateSelector">
+    <ion-label>Select a Date:</ion-label>
+    <ion-datetime displayFormat="MM/DD/YYYY" [ngModel]="myDate"></ion-datetime>
+  </ion-item>
 </ion-content>
