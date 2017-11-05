@@ -16,11 +16,30 @@
     </ion-select>
   </ion-item>
   
-  <ion-item [hidden]="!showDoctorText">
-    <ion-input type="text" name="doctorText"></ion-input>
+  <ion-item [hidden]="!showTextInput">
+    <ion-input type="text" name="textInput"></ion-input>
   </ion-item>
 
-  <ion-list inset name="doctorList" [hidden]="!showDoctorText">
+  <ion-list inset name ="hospitalList" [hidden]="!showHospitalList">
+    <ion-list-header>Hospitals</ion-list-header>
+    <button ion-item (click)="showHospitalSpecialtyList()">Butt Hospital</button>
+    <button ion-item (click)="showHospitalSpecialtyList()">Not Butt Hospital</button>
+    <button ion-item (click)="showHospitalSpecialtyList()">Colon Hospital</button>
+    <button ion-item (click)="showHospitalSpecialtyList()">Sphincter Hospital</button>
+    <button ion-item (click)="showHospitalSpecialtyList()">Dick Hospital</button>
+  </ion-list>
+
+  <ion-list inset name="specialtyList" [hidden]="!showSpecialtyList">
+      <ion-list-header>Specialties</ion-list-header>
+    <button ion-item (click)="showHospitalDoctorList()">Colon Doctor</button>
+    <button ion-item (click)="showHospitalDoctorList()">Rectum Doctor</button>
+    <button ion-item (click)="showHospitalDoctorList()">Damn Near Killed Em Doctor</button>
+    <button ion-item (click)="showHospitalDoctorList()">Overacter Doctor</button>
+    <button ion-item (click)="showHospitalDoctorList()">Jezebel Doctor</button>
+  </ion-list>
+
+  <ion-list inset name="doctorList" [hidden]="!showDoctorList">
+      <ion-list-header>Doctors</ion-list-header>
     <button ion-item (click)="showDatePicker()">Steve Billings, M.D.</button>
     <button ion-item (click)="showDatePicker()">Bob the Builder, M.D.</button>
     <button ion-item (click)="showDatePicker()">Michela Butts, M.D.</button>
@@ -28,8 +47,10 @@
     <button ion-item (click)="showDatePicker()">Scott Harban, S.S.W.F.C.D.</button>
   </ion-list>
 
-  <ion-item [hidden]="!dateSelector">
+  <ion-item [hidden]="!showDateSelector">
     <ion-label>Select a Date:</ion-label>
-    <ion-datetime displayFormat="MM/DD/YYYY" [ngModel]="myDate"></ion-datetime>
+    <ion-datetime displayFormat="MM/DD/YYYY" [min]="minDate.toISOString()" [max]="maxDate.toISOString()" [ngModel]="myDate" (ionChange)="showButton()"></ion-datetime>
   </ion-item>
+
+  <button ion-button name="appointmentButton" [hidden]="!showApptButton" large>Set Appointment</button>
 </ion-content>
